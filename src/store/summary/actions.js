@@ -1,5 +1,12 @@
 import axios from "axios";
 
+export const setSelected = (countryCode) => {
+  return {
+    type: "SET_SELECTED",
+    payload: countryCode,
+  };
+};
+
 const setSummary = (summary) => {
   console.log("did I get to setSummary");
   return {
@@ -18,7 +25,7 @@ export const fetchSummary = () => {
       console.log("what is summary response", summary);
       dispatch(setSummary(summary));
     } catch (error) {
-      console.log(error.response);
+      console.log(error);
     }
   };
 };

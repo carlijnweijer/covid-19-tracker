@@ -1,34 +1,35 @@
 import { FormControl, MenuItem, Select } from "@material-ui/core";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSummary, selectCountries } from "../store/summary/selectors";
-import { fetchSummary } from "../store/summary/actions";
+import {
+  selectCountries,
+  selectSelectedCountry,
+} from "../store/summary/selectors";
+import { setSelected } from "../store/summary/actions";
 
 export default function Header() {
-  const summary = useSelector(selectSummary);
   const countries = useSelector(selectCountries);
-  const [country, setCountry] = useState("worldwide");
-
-  console.log("what is summary", summary);
-  console.log("what is countries", countries);
+  const selectedCountry = useSelector(selectSelectedCountry);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchSummary());
-  }, [dispatch]);
+  // console.log("what is summary", summary);
+  // console.log("what is countries", countries);
 
   const onCountryChange = (event) => {
     const countryCode = event.target.value;
 
-    console.log("what is countrycode", countryCode);
-    setCountry(countryCode);
+    dispatch(setSelected(countryCode));
   };
 
   return (
     <div className="Header">
-      <h1>Covid 19 tracker</h1>
+      <h1>COVID-19 TODAY'S SITUATION</h1>
       <FormControl>
-        <Select variant="outlined" value={country} onChange={onCountryChange}>
+        <Select
+          variant="outlined"
+          value={selectedCountry}
+          onChange={onCountryChange}
+        >
           <MenuItem value="worldwide">Worldwide</MenuItem>
           {countries?.map((country) => {
             return (

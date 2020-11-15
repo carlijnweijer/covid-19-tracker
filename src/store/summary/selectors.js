@@ -5,3 +5,7 @@ export const selectCountries = (state) => {
     return { country: country.Country, countryCode: country.CountryCode };
   });
 };
+
+export const selectSelectedCountry = (state) => {
+  return state.summary.selected;
+};

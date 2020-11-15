@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import summary from "./countries/reducer";
+import summary from "./summary/reducer";
 
 const reducer = combineReducers({
   summary,

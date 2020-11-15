@@ -1,5 +1,30 @@
+body {
+  background-color: #f5f6fa;
+}
+
+.App {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+.appLeft {
+  flex: 0.9;
+}
+
 .Header {
   display: flex;
   justify-content: space-between;
   font-family: "Roboto", sans-serif;
+}
+
+.InfoBoxes {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 990px) {
+  .App {
+    flex-direction: column;
+  }
 }
