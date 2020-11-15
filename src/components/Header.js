@@ -12,9 +12,6 @@ export default function Header() {
   const selectedCountry = useSelector(selectSelectedCountry);
   const dispatch = useDispatch();
 
-  // console.log("what is summary", summary);
-  // console.log("what is countries", countries);
-
   const onCountryChange = (event) => {
     const countryCode = event.target.value;
 

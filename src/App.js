@@ -6,22 +6,10 @@ import Header from "./components/Header";
 import InfoBox from "./components/InfoBox";
 import { fetchSummary } from "./store/summary/actions";
 import {
+  selectGlobal,
   selectSelectedCountry,
   selectSummary,
 } from "./store/summary/selectors";
-
-/*    
-"Country": "Afghanistan",
-"CountryCode": "AF",
-"Slug": "afghanistan",
-"NewConfirmed": 66,
-"TotalConfirmed": 43035,
-"NewDeaths": 10,
-"TotalDeaths": 1605,
-"NewRecovered": 31,
-"TotalRecovered": 35067,
-"Date": "2020-11-15T18:58:22Z",
-*/
 
 function App() {
   const dispatch = useDispatch();
@@ -32,10 +20,7 @@ function App() {
 
   const summary = useSelector(selectSummary);
   const selectedCountry = useSelector(selectSelectedCountry);
-
-  /*
-if selected is something, find data for that selected
-*/
+  const global = useSelector(selectGlobal);
 
   const countryToShow = summary.Countries?.find((country) => {
     return country.CountryCode === selectedCountry;
@@ -44,13 +29,6 @@ if selected is something, find data for that selected
   console.log("what is the selected country", selectedCountry);
   console.log("what is countryToShow", countryToShow);
 
-  const newCases = countryToShow.NewConfirmed;
-  const totalCases = countryToShow.TotalConfirmed;
-  const newRecovered = countryToShow.NewRecovered;
-  const totalRecovered = countryToShow.TotalRecovered;
-  const newDeaths = countryToShow.NewDeaths;
-  const totalDeaths = countryToShow.TotalDeaths;
-
   return (
     <div className="App">
       <div className="appLeft">
@@ -58,15 +36,43 @@ if selected is something, find data for that selected
         <div className="InfoBoxes">
           <InfoBox
             title="Coronavirus cases"
-            cases={newCases}
-            total={totalCases}
+            cases={
+              selectedCountry === "worldwide"
+                ? global?.NewConfirmed
+                : countryToShow?.NewConfirmed
+            }
+            total={
+              selectedCountry === "worldwide"
+                ? global?.TotalConfirmed
+                : countryToShow?.TotalConfirmed
+            }
           />
           <InfoBox
             title="Recovered"
-            cases={newRecovered}
-            total={totalRecovered}
+            cases={
+              selectedCountry === "worldwide"
+                ? global?.NewRecovered
+                : countryToShow?.NewRecovered
+            }
+            total={
+              selectedCountry === "worldwide"
+                ? global?.TotalRecovered
+                : countryToShow?.TotalRecovered
+            }
           />
-          <InfoBox title="Deaths" cases={newDeaths} total={totalDeaths} />
+          <InfoBox
+            title="Deaths"
+            cases={
+              selectedCountry === "worldwide"
+                ? global?.NewDeaths
+                : countryToShow?.NewDeaths
+            }
+            total={
+              selectedCountry === "worldwide"
+                ? global?.TotalDeaths
+                : countryToShow?.TotalDeaths
+            }
+          />
         </div>
       </div>
       <div className="appRight">

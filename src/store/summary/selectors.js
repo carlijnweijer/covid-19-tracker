@@ -9,3 +9,7 @@ export const selectCountries = (state) => {
 export const selectSelectedCountry = (state) => {
   return state.summary.selected;
 };
+
+export const selectGlobal = (state) => {
+  return state.summary.all.Global;
+};
