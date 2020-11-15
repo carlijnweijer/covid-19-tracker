@@ -19,6 +19,7 @@ body {
 }
 
 .InfoBoxes {
+  margin-top: 20px;
   display: flex;
   justify-content: space-between;
 }
@@ -27,4 +28,18 @@ body {
   .App {
     flex-direction: column;
   }
+}
+
+.table {
+  margin: 20px 0;
+  overflow: scroll;
+  height: 40vh;
+}
+
+.table tr:nth-of-type(odd) {
+  background-color: #f3f2f8;
+}
+
+.table td {
+  padding: 5px 0 5px 0;
 }

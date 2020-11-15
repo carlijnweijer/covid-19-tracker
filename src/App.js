@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./App.css";
 import Header from "./components/Header";
 import InfoBox from "./components/InfoBox";
+import Table from "./components/Table";
 import { fetchSummary } from "./store/summary/actions";
 import {
   selectGlobal,
@@ -26,8 +27,8 @@ function App() {
     return country.CountryCode === selectedCountry;
   });
 
-  console.log("what is the selected country", selectedCountry);
-  console.log("what is countryToShow", countryToShow);
+  // console.log("what is the selected country", selectedCountry);
+  // console.log("what is countryToShow", countryToShow);
 
   return (
     <div className="App">
@@ -79,6 +80,7 @@ function App() {
         <Card>
           <CardContent>
             <h2>Live cases by country</h2>
+            <Table />
             <h2>Worldwide new cases</h2>
           </CardContent>
         </Card>
