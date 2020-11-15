@@ -1,3 +1,5 @@
-h1 {
+.Header {
+  display: flex;
+  justify-content: space-between;
   font-family: "Roboto", sans-serif;
 }
